@@ -1,0 +1,124 @@
+.deploy:
+    variables:
+        COMPOSER_CACHE_DIR: '${CI_PROJECT_DIR}/.composer'
+    except:
+        - schedules
+        - pipelines
+
+.feature:
+    stage: deploy.feature
+    resource_group: $CI_COMMIT_REF_NAME
+    environment:
+        name: $CI_COMMIT_REF_NAME
+        url: $ENVIRONMENT_URL
+
+#
+# Stage
+#
+
+deploy:feature:
+    extends:
+        - .ssh
+        - .deploy
+        - .feature
+        - .feature-branches
+    needs:
+        - build:php
+        - build:node
+    variables:
+        DEPLOYER_CONFIG_DATABASE_PASSWORD: $DB_PASSWORD_STAGE
+    script:
+        - vendor/bin/dep deploy:unlock stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+        - vendor/bin/dep deploy stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    environment:
+        on_stop: deploy:feature:stop
+        auto_stop_in: 3 months
+    allow_failure: false
+
+deploy:feature:rollback:
+    extends:
+        - .ssh
+        - .deploy
+        - .feature
+        - .feature-branches
+    dependencies: [ ]
+    script:
+        - vendor/bin/dep deploy:unlock stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+        - vendor/bin/dep rollback stage  --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    when: manual
+
+deploy:feature:stop:
+    extends:
+        - .feature
+        - .feature-branches
+    dependencies: [ ]
+    script:
+        # a curl call to the API is needed since trigger and environment aren't allowed to be used together
+        - curl --request POST --form "token=$CI_JOB_TOKEN" --form "variables[UPSTREAM_BRANCH]=$CI_COMMIT_REF_NAME" --form ref=main "https://git.xima.de/api/v4/projects/$CI_PROJECT_ID/trigger/pipeline"
+    variables:
+        GIT_STRATEGY: none
+    when: manual
+    environment:
+        action: stop
+
+deploy:feature:stop:downstream:
+    # run in downstream pipeline only!
+    only:
+        - pipelines
+    extends:
+        - .ssh
+        - .deploy
+        - .feature
+        - .feature-branches
+    except:
+        - schedules
+    dependencies: [ ]
+    variables:
+        DEPLOYER_CONFIG_DATABASE_PASSWORD: $DB_PASSWORD_STAGE
+    script:
+        - vendor/bin/dep feature:stop stage --feature=$UPSTREAM_BRANCH $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+
+sync:feature:
+    stage: sync
+    extends:
+        - .ssh
+        - .deploy
+        - .feature
+        - .feature-branches
+    dependencies: [ ]
+    variables:
+        GIT_STRATEGY: fetch
+    script:
+        - vendor/bin/dep feature:sync stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    when: manual
+
+#
+# Prod
+#
+deploy:prod:
+    extends:
+        - .ssh
+        - .deploy
+    needs:
+        - build:php
+        - build:node
+    when: manual
+    stage: deploy.prod
+    variables:
+        SSH_USER: SSH_USER_PROD
+        SSH_HOST: SSH_HOST_PROD
+    script:
+        - htdocs/bin/dep deploy prod -v
+        - htdocs/bin/dep deploy:prod:notify prod
+    only:
+        - main
+    allow_failure: false
+
+rollback:prod:
+    extends:
+        - .ssh
+        - .deploy
+    dependencies: [ ]
+    script:
+        - vendor/bin/dep rollback prod
+    when: manual
