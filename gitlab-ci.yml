@@ -4,13 +4,14 @@
 stages:
     - analyse
 
-
 #-----------------------------------------------------------------------------------------------------------------------
 # JOBS
 #-----------------------------------------------------------------------------------------------------------------------
 yaml:lint:
     stage: analyse
     image: pipelinecomponents/yamllint:latest
+    only:
+        - pipelines
     before_script:
         - yamllint --version
     script:
