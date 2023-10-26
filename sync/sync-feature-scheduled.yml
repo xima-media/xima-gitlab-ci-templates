@@ -1,0 +1,17 @@
+include:
+  - '../.prepare.yml'
+
+variables:
+  SCHEDULE_TASK_NAME: sync:feature:scheduled
+
+sync:feature:scheduled:
+  stage: sync
+  extends:
+    - .ssh
+    - .deploy-base-feature
+    - .base-schedule
+  dependencies: [ ]
+  variables:
+    GIT_STRATEGY: fetch
+  script:
+    - vendor/bin/dep feature:sync stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION

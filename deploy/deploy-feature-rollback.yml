@@ -1,0 +1,13 @@
+include:
+  - '../.prepare.yml'
+
+deploy:feature:rollback:
+  extends:
+    - .ssh
+    - .base-deploy
+    - .base-deploy-feature
+    - .feature-branches
+  script:
+    - vendor/bin/dep deploy:unlock stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    - vendor/bin/dep rollback stage  --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+  when: manual

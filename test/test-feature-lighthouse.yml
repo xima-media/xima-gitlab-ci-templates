@@ -1,0 +1,18 @@
+include:
+  - '../.prepare.yml'
+
+test:feature:lighthouse:
+  image: cypress/browsers:latest
+  needs: [ "deploy:feature" ]
+  variables:
+    URL_TO_TEST: https://$HOST_STAGE/$CI_COMMIT_REF_NAME/
+  extends:
+    - .feature-branches
+    - .base-test
+  except:
+    - schedules
+    - pipelines
+    - main
+  script:
+    - npm install -g @lhci/cli@0.12.x
+    - lhci autorun --config=./.lighthouserc.js --collect.url="$URL_TO_TEST" || echo "LHCI failed!"

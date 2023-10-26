@@ -1,0 +1,9 @@
+include:
+  - 'test-feature-lighthouse.yml'
+
+test:prod:lighthouse:
+  extends:
+    - test:feature:lighthouse
+  needs: [ "deploy:prod" ]
+  variables:
+    URL_TO_TEST: $APP_URL_PROD

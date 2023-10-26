@@ -1,0 +1,8 @@
+include:
+  - '../.prepare.yml'
+
+analyse:editorconfig:
+  needs: [ "build:php" ]
+  extends: .base-analyse
+  script:
+    - composer run editorconfig:check -d ${PATH_PROJECT_DIR}

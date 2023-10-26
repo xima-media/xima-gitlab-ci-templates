@@ -1,0 +1,10 @@
+include:
+  - 'build-node.yml'
+
+build:node:
+  artifacts:
+    paths:
+      - ${PATH_PROJECT_DIR}/packages/xima-sitepackage/Resources/Public
+  script:
+    - npm ci --prefix ${PATH_PROJECT_DIR} --cache ${PATH_PROJECT_DIR}/.npm-cache --prefer-offline
+    - npm run build --prefix ${PATH_PROJECT_DIR}

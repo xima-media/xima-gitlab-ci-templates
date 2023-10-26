@@ -1,0 +1,8 @@
+include:
+  - '../.prepare.yml'
+
+analyse:php:rector:
+  needs: [ "build:php" ]
+  extends: .base-analyse
+  script:
+    - composer run php:rector:check -d ${PATH_PROJECT_DIR}

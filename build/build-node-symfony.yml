@@ -1,0 +1,11 @@
+include:
+  - 'build-node.yml'
+
+build:node:
+  artifacts:
+    paths:
+      - ${PATH_PROJECT_DIR}/public/build
+      - ${PATH_PROJECT_DIR}/public/bundles
+  script:
+    - npm ci --prefix ${PATH_PROJECT_DIR} --cache ${PATH_PROJECT_DIR}/.npm-cache --prefer-offline
+    - FEATURE_BRANCH_PATH_PUBLIC=/$CI_COMMIT_REF_NAME npm run build --prefix ${PATH_PROJECT_DIR}

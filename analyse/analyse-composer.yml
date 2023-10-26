@@ -1,0 +1,8 @@
+include:
+  - '../.prepare.yml'
+
+analyse:composer:lint:
+  needs: [ "build:php" ]
+  extends: .base-analyse
+  script:
+    - composer run composer:normalize:check -d ${PATH_PROJECT_DIR}

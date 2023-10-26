@@ -1,0 +1,18 @@
+include:
+  - '../.prepare.yml'
+
+variables:
+  SCHEDULE_TASK_NAME: composer:security:check
+
+analyse:composer:security:
+  extends:
+    - .ssh
+    - .base-analyse
+  dependencies: [ ]
+  variables:
+    GIT_STRATEGY: fetch
+  script:
+    # install deployment dependencies
+    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts
+    # run security check
+    - vendor/bin/dep security:check:composer stage --notify $DEPLOYER_CONFIG_ADDITIONAL_OPTION

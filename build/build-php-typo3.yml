@@ -1,0 +1,9 @@
+include:
+  - 'build-php.yml'
+
+build:php:
+  artifacts:
+    paths:
+      - ${PATH_PROJECT_DIR}/vendor/
+      - ${PATH_PROJECT_DIR}/public/_assets/
+      - ${PATH_PROJECT_DIR}/public/typo3/

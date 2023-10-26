@@ -1,0 +1,31 @@
+include:
+  - '../.prepare.yml'
+
+test:feature:codeception:
+  image:
+    name: codeception/codeception
+    entrypoint: [ "" ]
+  services:
+    - name: selenium/standalone-chrome:latest
+      alias: selenium
+  variables:
+    SELENIUM_HOST: 'selenium'
+    URL_TO_TEST: https://$HOST_STAGE/$CI_COMMIT_REF_NAME/
+  extends:
+    - .feature-branches
+    - .base-test
+  except:
+    - schedules
+    - pipelines
+    - main
+  needs: [ "build:php", "deploy:feature" ]
+  script:
+    - >
+      vendor/bin/codecept run
+      -c tests/codeception/codeception-ci.yml
+      --html
+  artifacts:
+    when: always
+    paths:
+      - tests/codeception/tests/_output/**
+    expire_in: ${TEST_CODECEPTION_ARTIFACTS_EXPIRY}

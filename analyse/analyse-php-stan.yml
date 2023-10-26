@@ -1,0 +1,8 @@
+include:
+  - '../.prepare.yml'
+
+analyse:php:stan:
+  needs: [ "build:php" ]
+  extends: .base-analyse
+  script:
+    - composer run php:stan:check -d ${PATH_PROJECT_DIR}

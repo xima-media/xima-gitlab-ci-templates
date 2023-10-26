@@ -1,60 +1,17 @@
 #-----------------------------------------------------------------------------------------------------------------------
-# DEFAULT-DOCKER-IMAGE
-#-----------------------------------------------------------------------------------------------------------------------
-image: docker-os.artifactory.xima-services.de/xima-devops:php8.1
-
-#-----------------------------------------------------------------------------------------------------------------------
-# CONFIGURATION
-#-----------------------------------------------------------------------------------------------------------------------
-variables:
-    # App
-    PATH_PROJECT_DIR: "${CI_PROJECT_DIR}"
-    # Stage
-    SSH_USER_STAGE: ""
-    HOST_STAGE: ""
-    APP_URL_STAGE: "https://${HOST_STAGE}/"
-    SSH_HOST_STAGE: ""
-    # Prod
-    SSH_USER_PROD: ""
-    HOST_PROD: ""
-    APP_URL_PROD: ""
-    SSH_HOST_PROD: ""
-
-#-----------------------------------------------------------------------------------------------------------------------
 # STAGES
 #-----------------------------------------------------------------------------------------------------------------------
 stages:
-    - build
     - analyse
-    - deploy.feature
-    - sync
-    - test
-    - deploy.prod
 
 
 #-----------------------------------------------------------------------------------------------------------------------
 # JOBS
 #-----------------------------------------------------------------------------------------------------------------------
-
-# Define feature branch pattern
-.feature-branches:
-    only:
-        - main
-    variables:
-        SSH_USER: ${SSH_USER_STAGE}
-        SSH_HOST: ${SSH_HOST_STAGE}
-
-# Installing ssh key
-.ssh:
+yaml:lint:
+    stage: analyse
+    image: pipelinecomponents/yamllint:latest
     before_script:
-        # install deployment dependencies
-#        - composer install --no-scripts --no-dev --quiet
-        # install SSH key
-        - chmod +x .deployment/scripts/install-ssh.sh
-        - .deployment/scripts/install-ssh.sh ${SSH_KEY_NEW} ${SSH_HOST}
-
-include:
-    - '/gitlab/build.yml'
-    - '/gitlab/analyse.yml'
-    - '/gitlab/deploy.yml'
-    - '/gitlab/schedules.yml'
+        - yamllint --version
+    script:
+        - yamllint .

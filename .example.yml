@@ -1,0 +1,64 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# DEFAULT-DOCKER-IMAGE
+#-----------------------------------------------------------------------------------------------------------------------
+image: docker-os.artifactory.xima-services.de/xima-devops:php8.1
+
+#-----------------------------------------------------------------------------------------------------------------------
+# INCLUDES
+#-----------------------------------------------------------------------------------------------------------------------
+include:
+  - project: 'symfony-cms/general/misc/gitlab-ci-templates'
+    ref: latest
+    file:
+      - '/build/build-php-typo3.yml'
+      - '/build/build-node-typo3.yml'
+      - '/analyse/analyse-composer.yml'
+      - '/analyse/analyse-editorconfig.yml'
+      - '/analyse/analyse-php-cs-fixer.yml'
+      - '/analyse/analyse-php-lint.yml'
+      - '/analyse/analyse-php-rector.yml'
+      - '/analyse/analyse-php-stan.yml'
+      - '/analyse/analyse-xml-lint.yml'
+      - '/analyse/analyse-yaml-lint.yml'
+      - '/deploy/deploy-feature.yml'
+      - '/deploy/deploy-feature-rollback.yml'
+      - '/deploy/deploy-feature-stop.yml'
+      - '/deploy/deploy-feature-stop-downstream.yml'
+      - '/sync/sync-feature.yml'
+      - '/test/test-feature-codeception.yml'
+      - '/test/test-feature-lighthouse.yml'
+      - '/test/test-prod-lighthouse.yml'
+
+#-----------------------------------------------------------------------------------------------------------------------
+# CONFIGURATION
+#-----------------------------------------------------------------------------------------------------------------------
+variables:
+  # App
+  PATH_PROJECT_DIR: "${CI_PROJECT_DIR}"
+  # Stage
+  SSH_USER_STAGE: ""
+  HOST_STAGE: ""
+  APP_URL_STAGE: "https://${HOST_STAGE}/"
+  SSH_HOST_STAGE: ""
+  # Prod
+  SSH_USER_PROD: ""
+  HOST_PROD: ""
+  APP_URL_PROD: "https://${HOST_PROD}/"
+  SSH_HOST_PROD: ""
+
+#-----------------------------------------------------------------------------------------------------------------------
+# STAGES
+#-----------------------------------------------------------------------------------------------------------------------
+stages:
+  - build
+  - analyse
+  - deploy.feature
+  - sync
+  - test
+  - deploy.prod
+  - test.prod
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# JOBS
+#-----------------------------------------------------------------------------------------------------------------------

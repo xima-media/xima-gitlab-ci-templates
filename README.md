@@ -1,40 +1,52 @@
-# XIMA GitLab-CI Pipeline
+# XIMA GitLab-CI Templates
 
-## How to use in project
 
-1. Create .gitlab-ci.yml file with following content
+## Installation
 
-```
+See [.example.yml](.example.yml) for example GitLab-CI configuration.
+
+Use `include` to reference template files:
+
+```yaml
 include:
-    - project: 'symfony-cms/general/misc/pipeline'
-      ref: v0.0.1
-      file: '/gitlab-ci.yml'
-#-----------------------------------------------------------------------------------------------------------------------
-# CONFIGURATION
-#-----------------------------------------------------------------------------------------------------------------------
-variables:
-    # Stage
-    SSH_USER_STAGE: "xima"
-    HOST_STAGE: ""
-    SSH_HOST_STAGE: ""
-    
-    # Prod
-    SSH_USER_PROD: ""
-    HOST_PROD: ""
-    APP_URL_PROD: ""
-    SSH_HOST_PROD: ""
-
-#-----------------------------------------------------------------------------------------------------------------------
-# JOBS
-#-----------------------------------------------------------------------------------------------------------------------
-
-# Define feature branch pattern
-.feature-branches:
-    only:
-        - /^release-(.*)/
-        - /^feature-.*$/
-        - /^SCI-.*$/
-        - main
- 
+  - project: 'symfony-cms/general/misc/gitlab-ci-templates'
+    ref: latest
+    file:
+      - '/analyse/analyse-composer.yml'
 ```
-Fill in credentials and set ref: to latest stable release.
+
+Extend and override configuration variables:
+
+```yaml
+variables:
+  PATH_PROJECT_DIR: "app/"
+```
+
+Extend and override further ci jobs.
+
+## Description of all the jobs
+
+### Analyse
+
+| Job name                    | Description                          |
+|-----------------------------|--------------------------------------|
+| `analyse:composer:lint`     | Use composer normalize               |
+| `analyse:composer:security` | Run composer dependency check        |
+| `analyse:editorconfig`      | Check editorconfig for project files |
+| `analyse:php:cs-fixer`      | Run php cs fixer                     |
+| `analyse:php:lint`          | Run php lint                         |
+| `analyse:php:rector`        | Run php rector                       |
+| `analyse:php:stan`          | Run php stan                         |
+| `analyse:xml:lint`          | Lint xml files                       |
+| `analyse:yaml:lint`         | Lint yaml files                      |
+
+
+### Build
+
+### Deploy
+
+### Sync
+
+### Test
+
+_ToDo_ further documentation

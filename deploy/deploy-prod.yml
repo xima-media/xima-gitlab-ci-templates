@@ -1,0 +1,21 @@
+include:
+  - '../.prepare.yml'
+
+deploy:prod:
+  extends:
+    - .ssh
+    - .base-deploy
+  needs:
+    - build:php
+    - build:node
+  when: manual
+  stage: deploy.prod
+  variables:
+    SSH_USER: ${SSH_USER_PROD}
+    SSH_HOST: ${SSH_HOST_PROD}
+  script:
+    - vendor/bin/dep deploy prod $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    - vendor/bin/dep deploy:prod:notify prod
+  only:
+    - main
+  allow_failure: false

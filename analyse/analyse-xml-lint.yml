@@ -1,0 +1,9 @@
+include:
+  - '../.prepare.yml'
+
+analyse:xml:lint:
+  needs: [ "build:php" ]
+  extends: .base-analyse
+  script:
+    - apk add --update --no-cache libxml2-utils
+    - composer run xml:lint -d ${PATH_PROJECT_DIR}

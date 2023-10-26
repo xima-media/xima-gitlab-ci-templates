@@ -1,0 +1,21 @@
+include:
+  - '../.prepare.yml'
+
+deploy:feature:
+  extends:
+    - .ssh
+    - .base-deploy
+    - .base-deploy-feature
+    - .feature-branches
+  needs:
+    - build:php
+    - build:node
+  variables:
+    DEPLOYER_CONFIG_DATABASE_PASSWORD: $DB_PASSWORD_STAGE
+  script:
+    - vendor/bin/dep deploy:unlock stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    - vendor/bin/dep deploy stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+  environment:
+    on_stop: deploy:feature:stop
+    auto_stop_in: 3 months
+  allow_failure: false
