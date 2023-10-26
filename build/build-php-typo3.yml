@@ -1,5 +1,8 @@
 include:
-  - 'build-php.yml'
+  - project: 'symfony-cms/general/misc/gitlab-ci-templates'
+    ref: feature-refactoring
+    file:
+      - 'build/build-php.yml'
 
 build:php:
   artifacts:
