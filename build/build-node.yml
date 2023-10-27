@@ -1,6 +1,3 @@
-include:
-  - '../.prepare.yml'
-
 build:node:
   extends: .base-build
   image:

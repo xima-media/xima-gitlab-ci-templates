@@ -1,6 +1,3 @@
-include:
-  - '../.prepare.yml'
-
 analyse:php:lint:
   needs: [ "build:php" ]
   extends: .base-analyse

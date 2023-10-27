@@ -1,6 +1,3 @@
-include:
-  - '../.prepare.yml'
-
 sync:feature:
   stage: sync
   extends:

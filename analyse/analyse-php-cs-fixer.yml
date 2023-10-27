@@ -1,6 +1,3 @@
-include:
-  - '../.prepare.yml'
-
 analyse:php:cs-fixer:
   needs: [ "build:php" ]
   extends: .base-analyse

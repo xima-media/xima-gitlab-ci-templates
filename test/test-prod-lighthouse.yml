@@ -1,6 +1,3 @@
-include:
-  - 'test-feature-lighthouse.yml'
-
 test:prod:lighthouse:
   extends:
     - test:feature:lighthouse

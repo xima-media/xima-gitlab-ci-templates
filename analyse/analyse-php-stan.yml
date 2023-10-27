@@ -1,6 +1,3 @@
-include:
-  - '../.prepare.yml'
-
 analyse:php:stan:
   needs: [ "build:php" ]
   extends: .base-analyse

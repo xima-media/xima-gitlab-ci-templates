@@ -1,6 +1,3 @@
-include:
-  - '../.prepare.yml'
-
 deploy:feature:stop:
   extends:
     - .base-deploy-feature
