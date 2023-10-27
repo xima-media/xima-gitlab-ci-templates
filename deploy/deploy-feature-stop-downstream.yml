@@ -13,5 +13,4 @@ deploy:feature:stop:downstream:
   variables:
     DEPLOYER_CONFIG_DATABASE_PASSWORD: $DB_PASSWORD_STAGE
   script:
-    -
     - vendor/bin/dep feature:stop stage --feature=$UPSTREAM_BRANCH $DEPLOYER_CONFIG_ADDITIONAL_OPTION
