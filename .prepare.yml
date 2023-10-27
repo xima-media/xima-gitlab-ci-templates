@@ -2,10 +2,10 @@
 # CONFIGURATION
 #-----------------------------------------------------------------------------------------------------------------------
 variables:
-  BUILD_ARTIFACTS_EXPIRY: 1 hour
-  BUILD_COMPOSER_VERSION: 2.5
-  BUILD_NODE_VERSION: 16
-  TEST_CODECEPTION_ARTIFACTS_EXPIRY: 1 day
+  BUILD_ARTIFACTS_EXPIRY: "1 hour"
+  BUILD_COMPOSER_VERSION: "2.5"
+  BUILD_NODE_VERSION: "16"
+  TEST_CODECEPTION_ARTIFACTS_EXPIRY: "1 day"
 
 #-----------------------------------------------------------------------------------------------------------------------
 # ANALYSE

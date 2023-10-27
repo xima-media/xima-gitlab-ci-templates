@@ -1,5 +1,5 @@
 variables:
-  SCHEDULE_TASK_NAME: composer:security:check
+  SCHEDULE_TASK_NAME: "composer:security:check"
 
 analyse:composer:security:
   extends:

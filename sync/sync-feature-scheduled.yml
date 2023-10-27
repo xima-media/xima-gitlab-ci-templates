@@ -1,5 +1,5 @@
 variables:
-  SCHEDULE_TASK_NAME: sync:feature:scheduled
+  SCHEDULE_TASK_NAME: "sync:feature:scheduled"
 
 sync:feature:scheduled:
   stage: sync
