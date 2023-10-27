@@ -13,7 +13,7 @@ include:
       - '/.prepare.yml'
       - '/build/build-php-typo3.yml'
       - '/build/build-node-typo3.yml'
-      - '/analyse/analyse-composer.yml'
+      - '/analyse/analyse-composer-lint.yml'
       - '/analyse/analyse-editorconfig.yml'
       - '/analyse/analyse-php-cs-fixer.yml'
       - '/analyse/analyse-php-lint.yml'
@@ -46,18 +46,6 @@ variables:
   HOST_PROD: ""
   APP_URL_PROD: "https://${HOST_PROD}/"
   SSH_HOST_PROD: ""
-
-#-----------------------------------------------------------------------------------------------------------------------
-# STAGES
-#-----------------------------------------------------------------------------------------------------------------------
-stages:
-  - build
-  - analyse
-  - deploy.feature
-  - sync
-  - test
-  - deploy.prod
-  - test.prod
 
 
 #-----------------------------------------------------------------------------------------------------------------------
