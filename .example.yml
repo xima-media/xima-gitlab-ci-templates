@@ -10,6 +10,7 @@ include:
   - project: 'symfony-cms/general/misc/gitlab-ci-templates'
     ref: latest
     file:
+      - '/.prepare.yml'
       - '/build/build-php-typo3.yml'
       - '/build/build-node-typo3.yml'
       - '/analyse/analyse-composer.yml'
