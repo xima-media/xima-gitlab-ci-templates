@@ -25,4 +25,4 @@ test:feature:codeception:
     when: always
     paths:
       - tests/codeception/tests/_output/**
-    expire_in: ${TEST_CODECEPTION_ARTIFACTS_EXPIRY}
+    expire_in: 1 day
