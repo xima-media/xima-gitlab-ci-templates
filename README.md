@@ -13,7 +13,7 @@ Use `include` to reference template files:
 ```yaml
 include:
   - project: 'symfony-cms/general/misc/gitlab-ci-templates'
-    ref: latest
+    ref: main
     file:
       - '/.prepare.yml'
       - '/analyse/analyse-composer.yml'
@@ -79,3 +79,15 @@ Extend and override further ci jobs.
 | `test:feature:codeception` | [test-feature-codeception.yml](./test/test-feature-codeception.yml) | Test the feature branch instance via codeception       |
 | `test:feature:lighthouse`  | [test-feature-lighthouse.yml](./test/test-feature-lighthouse.yml)   | Test the feature branch instance via google lighthouse |
 | `test:prod:lighthouse`     | [test-prod-lighthouse.yml](./test/test-prod-lighthouse.yml)         | The the production system via google lighthouse        |
+
+## Adjustments
+
+You can override or extend the given template jobs by adjusting individual aspects, e.g. the needed artifacts from the `build:node` job:
+
+```yaml
+build:node:
+  artifacts:
+    paths:
+      - ${PATH_PROJECT_DIR}/packages/xima-sitepackage/Resources/Public
+      - ${PATH_PROJECT_DIR}/packages/xima-media/Resources/Public
+```
