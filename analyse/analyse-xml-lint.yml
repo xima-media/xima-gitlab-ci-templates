@@ -2,5 +2,5 @@ analyse:xml:lint:
   needs: [ "build:php" ]
   extends: .base-analyse
   script:
-    - apk add --update --no-cache libxml2-utils
+    - apt-get update -q && apt-get install libxml2-utils -q
     - composer run xml:lint -d ${PATH_PROJECT_DIR}
