@@ -1,5 +1,8 @@
 # XIMA GitLab-CI Templates
 
+![GitLab-CI Templates](.doc/gitlab-ci-templates.png)
+
+This repository provides several templates for reusable GitLab-CI jobs. 
 
 ## Installation
 
