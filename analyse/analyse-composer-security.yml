@@ -1,3 +1,9 @@
+# Purpose:
+#   Analyse job for scanning for security vulnerabilities running within a gitlab schedule
+#
+# Dependency:
+#   Deployer task "security:check:composer"
+#
 variables:
   SCHEDULE_TASK_NAME: "composer:security:check"
 

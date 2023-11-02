@@ -1,3 +1,9 @@
+# Purpose:
+#   Install composer dependencies
+#
+# Configuration:
+#   Adjust the needed artifact paths
+#
 build:php:
   extends: .base-build
   image:

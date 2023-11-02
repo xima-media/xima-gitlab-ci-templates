@@ -1,3 +1,9 @@
+# Purpose:
+#   Sync periodic a feature branch instance
+#
+# Dependency:
+#   XIMA Deployer Tools
+#
 variables:
   SCHEDULE_TASK_NAME: "sync:feature:scheduled"
 

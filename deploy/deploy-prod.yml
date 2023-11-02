@@ -1,3 +1,9 @@
+# Purpose:
+#   Deploy an application on the production system
+#
+# Dependency:
+#   XIMA Deployer Tools
+#
 deploy:prod:
   extends:
     - .ssh

@@ -1,3 +1,9 @@
+# Purpose:
+#   Analyse job for checking all project files according the editorconfig
+#
+# Dependency:
+#   Composer package "armin/editorconfig-cli" and a composer script "editorconfig:check"
+#
 analyse:editorconfig:
   needs: [ "build:php" ]
   extends: .base-analyse

@@ -1,3 +1,9 @@
+# Purpose:
+#   Sync manually a feature branch instance
+#
+# Dependency:
+#   XIMA Deployer Tools
+#
 sync:feature:
   stage: sync
   extends:

@@ -1,3 +1,9 @@
+# Purpose:
+#   Analyse job for checking all yaml files
+#
+# Dependency:
+#   Composer script "yaml:lint"
+#
 analyse:yaml:lint:
   needs: [ "build:php" ]
   extends: .base-analyse

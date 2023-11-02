@@ -1,3 +1,9 @@
+# Purpose:
+#   Analyse job for checking all xml files
+#
+# Dependency:
+#   Composer script "xml:lint"
+#
 analyse:xml:lint:
   needs: [ "build:php" ]
   extends: .base-analyse

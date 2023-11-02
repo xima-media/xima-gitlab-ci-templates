@@ -1,3 +1,9 @@
+# Purpose:
+#   Test a feature branch instance with codeception
+#
+# Dependency:
+#   Codeception
+#
 test:feature:codeception:
   image:
     name: codeception/codeception

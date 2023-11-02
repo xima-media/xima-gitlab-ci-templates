@@ -1,3 +1,9 @@
+# Purpose:
+#   Rollback a deployed feature instance
+#
+# Dependency:
+#   XIMA Deployer Tools
+#
 deploy:feature:rollback:
   extends:
     - .ssh

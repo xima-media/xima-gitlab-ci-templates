@@ -1,3 +1,9 @@
+# Purpose:
+#   Analyse job for checking php code style
+#
+# Dependency:
+#   Composer package "friendsofphp/php-cs-fixer" and a composer script "php:cs-fixer:check"
+#
 analyse:php:cs-fixer:
   needs: [ "build:php" ]
   extends: .base-analyse

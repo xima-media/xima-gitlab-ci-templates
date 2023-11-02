@@ -1,3 +1,6 @@
+# Purpose:
+#   Test the production system with google lighthouse
+#
 test:prod:lighthouse:
   extends:
     - test:feature:lighthouse

@@ -1,3 +1,9 @@
+# Purpose:
+#   Analyse job for checking all php files with rector
+#
+# Dependency:
+#   Composer package "rector/rector" and a composer script "php:rector:check"
+#
 analyse:php:rector:
   needs: [ "build:php" ]
   extends: .base-analyse

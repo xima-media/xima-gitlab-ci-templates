@@ -1,3 +1,9 @@
+# Purpose:
+#   Analyse job for simply linting all php files
+#
+# Dependency:
+#   Composer script "php:lint"
+#
 analyse:php:lint:
   needs: [ "build:php" ]
   extends: .base-analyse

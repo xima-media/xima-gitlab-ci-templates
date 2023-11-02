@@ -1,3 +1,9 @@
+# Purpose:
+#   Analyse job for normalizing the composer.json file
+#
+# Dependency:
+#   Composer package "ergebnis/composer-normalize" and a composer script "composer:normalize:check"
+#
 analyse:composer:lint:
   needs: [ "build:php" ]
   extends: .base-analyse

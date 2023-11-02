@@ -1,3 +1,9 @@
+# Purpose:
+#   Analyse job for checking all php files with php stan
+#
+# Dependency:
+#   Composer package "phpstan/phpstan" and a composer script "php:stan:check"
+#
 analyse:php:stan:
   needs: [ "build:php" ]
   extends: .base-analyse

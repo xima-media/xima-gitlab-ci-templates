@@ -1,3 +1,9 @@
+# Purpose:
+#   Deploy a feature branch instance on a staging system
+#
+# Dependency:
+#   XIMA Deployer Tools
+#
 deploy:feature:
   extends:
     - .ssh

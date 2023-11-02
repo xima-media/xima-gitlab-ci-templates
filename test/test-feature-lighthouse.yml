@@ -1,3 +1,6 @@
+# Purpose:
+#   Test a feature branch instance with google lighthouse
+#
 test:feature:lighthouse:
   image: cypress/browsers:latest
   needs: [ "deploy:feature" ]

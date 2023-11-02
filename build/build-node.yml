@@ -1,3 +1,12 @@
+# Purpose:
+#   Install node dependencies and build frontend assets
+#
+# Dependency:
+#   Npm script "build"
+#
+# Configuration:
+#   Adjust the needed artifact paths
+#
 build:node:
   extends: .base-build
   image:

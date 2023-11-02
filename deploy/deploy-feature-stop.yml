@@ -1,3 +1,9 @@
+# Purpose:
+#   Stop an existing feature branch instance on a staging system by calling a downstream pipeline on the main branch (Sender)
+#
+# Dependency:
+#   XIMA Deployer Tools
+#
 deploy:feature:stop:
   extends:
     - .base-deploy-feature
