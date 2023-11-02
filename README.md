@@ -28,6 +28,8 @@ variables:
 
 Extend and override further ci jobs.
 
+See further default configuration in the [.prepare.yml](.prepare.yml).
+
 ## Description of all the jobs
 
 ### Analyse
@@ -82,6 +84,8 @@ Extend and override further ci jobs.
 
 ## Adjustments
 
+### Jobs
+
 You can override or extend the given template jobs by adjusting individual aspects, e.g. the needed artifacts from the `build:node` job:
 
 ```yaml
@@ -90,4 +94,14 @@ build:node:
     paths:
       - ${PATH_PROJECT_DIR}/packages/xima-sitepackage/Resources/Public
       - ${PATH_PROJECT_DIR}/packages/xima-media/Resources/Public
+```
+
+### Versions
+
+Additionally configure used versions within the variables (default values are stored in the [.prepare.yml](.prepare.yml)):
+```yaml
+variables:
+  BUILD_COMPOSER_VERSION: "2.6"
+  BUILD_NODE_VERSION: "18"
+  PHP_VERSION: "8.2"
 ```
