@@ -19,4 +19,7 @@ deploy:feature:stop:downstream:
   variables:
     DEPLOYER_CONFIG_DATABASE_PASSWORD: $DB_PASSWORD_STAGE
   script:
+    # install deployment dependencies
+    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts
+    # stop feature
     - vendor/bin/dep feature:stop stage --feature=$UPSTREAM_BRANCH $DEPLOYER_CONFIG_ADDITIONAL_OPTION

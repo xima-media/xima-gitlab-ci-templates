@@ -13,6 +13,9 @@ deploy:feature:stop:
     - pipelines
   dependencies: [ ]
   script:
+    # install deployment dependencies
+    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts
+    # trigger downstream pipeline
     - curl --request POST --form "token=$CI_JOB_TOKEN" --form "variables[UPSTREAM_BRANCH]=$CI_COMMIT_REF_NAME" --form ref=main "https://git.xima.de/api/v4/projects/$CI_PROJECT_ID/trigger/pipeline"
   variables:
     GIT_STRATEGY: none
