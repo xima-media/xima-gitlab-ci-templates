@@ -1,5 +1,5 @@
 # Purpose:
-#   Rollback a deployed feature instance
+#   Rollback a last deployed release
 #
 # Dependency:
 #   XIMA Deployer Tools

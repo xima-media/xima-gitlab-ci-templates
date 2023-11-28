@@ -22,6 +22,9 @@ test:feature:codeception:
     - pipelines
     - main
   needs: [ "build:php", "deploy:feature" ]
+  before_script:
+    # install deployment dependencies
+    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts
   script:
     - >
       vendor/bin/codecept run
