@@ -20,8 +20,6 @@ build:node:
   artifacts:
     paths:
       - ${PATH_PROJECT_DIR}/packages/xima-sitepackage/Resources/Public
-      - ${PATH_PROJECT_DIR}/packages/xima-api-client/Resources/Public/Css/dist
-      - ${PATH_PROJECT_DIR}/packages/xima-api-client/Resources/Public/JavaScript/dist
   script:
     - npm ci --prefix ${PATH_PROJECT_DIR} --cache ${PATH_PROJECT_DIR}/.npm-cache --prefer-offline
     - npm run build --prefix ${PATH_PROJECT_DIR}
