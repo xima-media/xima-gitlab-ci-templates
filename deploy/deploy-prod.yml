@@ -17,8 +17,6 @@ deploy:prod:
     SSH_USER: ${SSH_USER_PROD}
     SSH_HOST: ${SSH_HOST_PROD}
   script:
-    # install deployment dependencies
-    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts
     #deploy prod
     - vendor/bin/dep deploy prod $DEPLOYER_CONFIG_ADDITIONAL_OPTION
     - vendor/bin/dep deploy:prod:notify prod

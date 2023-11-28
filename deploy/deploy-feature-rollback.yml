@@ -11,8 +11,6 @@ deploy:feature:rollback:
     - .base-deploy-feature
     - .feature-branches
   script:
-    # install deployment dependencies
-    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts
     # rollback
     - vendor/bin/dep deploy:unlock stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
     - vendor/bin/dep rollback stage  --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION

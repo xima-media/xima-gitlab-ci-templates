@@ -97,9 +97,6 @@ stages:
 #-----------------------------------------------------------------------------------------------------------------------
 .ssh:
   before_script:
-    # install deployment dependencies
-    - composer install --no-scripts --no-dev --quiet --ignore-platform-reqs
-    # GitLab formatting
     - DATE=`date +%s`
     - TITLE="Install SSH Key"
     - echo -e "\e[0Ksection_start:${DATE}:${DATE}[collapsed=true]\r\e[0K\033[1;96m${TITLE}\033[m"
