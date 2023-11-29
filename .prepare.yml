@@ -4,7 +4,7 @@
 variables:
   BUILD_COMPOSER_VERSION: "2.5"
   BUILD_NODE_VERSION: "16"
-  PHP_VERSION: "8.1"
+  PHP_VERSION: "8.2"
 
 #-----------------------------------------------------------------------------------------------------------------------
 # DEFAULT-DOCKER-IMAGE
