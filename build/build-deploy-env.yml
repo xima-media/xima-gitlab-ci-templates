@@ -11,7 +11,7 @@ test:feature:codeception:
   before_script:
     # install deployment dependencies
     - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts --quiet -d ${CI_PROJECT_DIR}
-    
+
     - DATE=`date +%s`
     - TITLE="Install SSH Key"
     - echo -e "\e[0Ksection_start:${DATE}:${DATE}[collapsed=true]\r\e[0K\033[1;96m${TITLE}\033[m"

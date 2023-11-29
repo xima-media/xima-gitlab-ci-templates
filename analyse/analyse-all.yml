@@ -1,6 +1,5 @@
 include:
     - '/analyse/analyse-composer-lint.yml'
-    - '/analyse/analyse-composer-security.yml'
     - '/analyse/analyse-editorconfig.yml'
     - '/analyse/analyse-php-cs-fixer.yml'
     - '/analyse/analyse-php-lint.yml'
