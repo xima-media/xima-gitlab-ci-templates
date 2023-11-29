@@ -19,6 +19,7 @@ build:php:
   artifacts:
     paths:
       - ${PATH_PROJECT_DIR}/vendor/
+      - ${PATH_PROJECT_DIR}/var/cache/
   before_script:
     - composer config -g cache-dir "${CI_PROJECT_DIR}/.composer"
   script:
