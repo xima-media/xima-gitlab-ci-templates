@@ -5,6 +5,9 @@ variables:
   BUILD_COMPOSER_VERSION: "2.5"
   BUILD_NODE_VERSION: "16"
   PHP_VERSION: "8.2"
+  # default is stage - this is overridden in prod deployment
+  SSH_USER: ${SSH_USER_STAGE}
+  SSH_HOST: ${SSH_HOST_STAGE}
 
 #-----------------------------------------------------------------------------------------------------------------------
 # DEFAULT-DOCKER-IMAGE
@@ -71,9 +74,6 @@ stages:
     - /^release-(.*)/
     - /^feature-.*$/
     - main
-  variables:
-    SSH_USER: ${SSH_USER_STAGE}
-    SSH_HOST: ${SSH_HOST_STAGE}
 
 #-----------------------------------------------------------------------------------------------------------------------
 # SCHEDULE
