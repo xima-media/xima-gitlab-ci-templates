@@ -17,7 +17,6 @@ sync:feature:scheduled:
   variables:
     GIT_STRATEGY: fetch
   script:
-    # install deployment dependencies
-    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts
+    - !reference [.check-deployment-dependencies, script]
     # sync stage
     - vendor/bin/dep feature:sync stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION

@@ -23,10 +23,9 @@ test:feature:codeception:
     - main
   needs: [ "build:php", "deploy:feature" ]
   script:
-    - >
-      vendor/bin/codecept run
-      -c tests/codeception/codeception-ci.yml
-      --html
+    - !reference [.check-deployment-dependencies, script]
+    # codeception tests
+    - vendor/bin/codecept run -c tests/codeception/codeception-ci.yml --html
   artifacts:
     when: always
     paths:
