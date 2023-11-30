@@ -16,6 +16,8 @@ deploy:feature:
   variables:
     DEPLOYER_CONFIG_DATABASE_PASSWORD: $DB_PASSWORD_STAGE
   script:
+    - !reference [.check-deployment-dependencies, script]
+    # deploy feature
     - vendor/bin/dep deploy:unlock stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
     - vendor/bin/dep deploy stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
   environment:
