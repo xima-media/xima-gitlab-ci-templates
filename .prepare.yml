@@ -70,6 +70,8 @@ stages:
     url: $ENVIRONMENT_URL
 
 .feature-branches:
+  variables:
+    FEATURE_STOP_DOWNSTREAM_BRANCH: main
   only:
     - /^release-(.*)/
     - /^feature-.*$/
