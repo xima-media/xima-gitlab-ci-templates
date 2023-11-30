@@ -2,12 +2,12 @@
 #   Analyse job for scanning for security vulnerabilities running within a gitlab schedule
 #
 # Dependency:
-#   Deployer task "security:check:composer"
+#   Deployer task "security:check:composer:scheduled"
 #
 variables:
-  SCHEDULE_TASK_NAME: "composer:security:check"
+  SCHEDULE_TASK_NAME: "composer:security:check:scheduled"
 
-analyse:composer:security:
+analyse:composer:security:scheduled:
   stage: analyse
   extends:
     - .ssh
