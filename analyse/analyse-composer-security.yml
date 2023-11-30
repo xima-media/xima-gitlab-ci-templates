@@ -8,9 +8,10 @@ variables:
   SCHEDULE_TASK_NAME: "composer:security:check"
 
 analyse:composer:security:
+  stage: analyse
   extends:
     - .ssh
-    - .base-analyse
+    - .base-schedule
   dependencies: [ ]
   variables:
     GIT_STRATEGY: fetch
