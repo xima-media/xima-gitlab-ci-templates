@@ -1,9 +1,0 @@
-include:
-    - '/analyse/analyse-composer-lint.yml'
-    - '/analyse/analyse-editorconfig.yml'
-    - '/analyse/analyse-php-cs-fixer.yml'
-    - '/analyse/analyse-php-lint.yml'
-    - '/analyse/analyse-php-rector.yml'
-    - '/analyse/analyse-php-stan.yml'
-    - '/analyse/analyse-xml-lint.yml'
-    - '/analyse/analyse-yaml-lint.yml'
