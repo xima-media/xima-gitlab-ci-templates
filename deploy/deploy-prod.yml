@@ -17,7 +17,8 @@ deploy:prod:
     SSH_USER: ${SSH_USER_PROD}
     SSH_HOST: ${SSH_HOST_PROD}
   script:
-    #deploy prod
+    - !reference [.check-deployment-dependencies, script]
+    # deploy prod
     - vendor/bin/dep deploy prod $DEPLOYER_CONFIG_ADDITIONAL_OPTION
     - vendor/bin/dep deploy:prod:notify prod
   only:
