@@ -3,9 +3,9 @@
 #-----------------------------------------------------------------------------------------------------------------------
 include:
   - project: 'symfony-cms/general/misc/gitlab-ci-templates'
-    ref: latest
+    ref: 1.x
     file:
-      - '/.prepare.yml'
+      - '/.base.yml'
       - '/build/build-php-typo3.yml'
       - '/build/build-node-typo3.yml'
       - '/analyse/analyse-composer-lint.yml'
