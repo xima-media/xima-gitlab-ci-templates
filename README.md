@@ -6,16 +6,16 @@ This repository provides several templates for reusable GitLab-CI jobs.
 
 ## Installation
 
-See [.example.yml](.example.yml) for example GitLab-CI configuration.
+See [.gitlab-ci.yml.dist](.gitlab-ci.yml.dist) for example GitLab-CI configuration.
 
 Use `include` to reference template files:
 
 ```yaml
 include:
   - project: 'symfony-cms/general/misc/gitlab-ci-templates'
-    ref: main
+    ref: 1.x
     file:
-      - '/.prepare.yml'
+      - '/.base.yml'
       - '/analyse/analyse-composer.yml'
 ```
 
@@ -28,7 +28,7 @@ variables:
 
 Extend and override further ci jobs.
 
-See further default configuration in the [.prepare.yml](.prepare.yml).
+See further default configuration in the [.base.yml](.base.yml).
 
 ## Description of all the jobs
 
@@ -98,10 +98,15 @@ build:node:
 
 ### Versions
 
-Additionally configure used versions within the variables (default values are stored in the [.prepare.yml](.prepare.yml)):
+Additionally configure used versions within the variables (default values are stored in the [.base.yml](.base.yml)):
 ```yaml
 variables:
   BUILD_COMPOSER_VERSION: "2.6"
   BUILD_NODE_VERSION: "18"
   PHP_VERSION: "8.2"
 ```
+
+## Development
+
+The development workflow provides for all minor changes to be checked into the "1.x" branch so that all associated projects automatically receive the latest version from this branch.
+If there are breaking changes, a new branch "2.x" is created so that the associated projects can be updated manually.
