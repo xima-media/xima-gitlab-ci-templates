@@ -106,6 +106,15 @@ variables:
   PHP_VERSION: "8.2"
 ```
 
+### Feature-stop downstream branch
+You can override on which branch the downstream pipeline should be triggered. Default is "main".
+This is useful if main branch does not contain the current pipeline setup and therefore can't handel the trigger.
+```yaml
+.feature-branches:
+  variables:
+    FEATURE_STOP_DOWNSTREAM_BRANCH: main-v12
+```
+
 ## Development
 
 The development workflow provides for all minor changes to be checked into the "1.x" branch so that all associated projects automatically receive the latest version from this branch.
