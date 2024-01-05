@@ -21,6 +21,6 @@ analyse:composer:security:scheduled:
     GIT_STRATEGY: fetch
   script:
     # install deployment dependencies
-    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts
+    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts -d ${PATH_CI_DIR}
     # run security check
-    - vendor/bin/dep security:check:composer stage --notify $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    - ${PATH_CI_DIR}/vendor/bin/dep security:check:composer stage --notify $DEPLOYER_CONFIG_ADDITIONAL_OPTION

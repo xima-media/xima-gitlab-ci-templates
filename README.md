@@ -84,6 +84,18 @@ See further default configuration in the [.base.yml](.base.yml).
 
 ## Adjustments
 
+### Paths
+
+If your composer file(s) are not located in project root directory, you can change it to your needs.
+PATH_CI_DIR specifies path to composer.json with deployment dependencies. If you have a separate composer.json for project dependencies yau can adapt that path as well. 
+
+```yaml
+variables:
+  # project paths - default both to root directory
+  PATH_CI_DIR: "${CI_PROJECT_DIR}"
+  PATH_PROJECT_DIR: "${PATH_CI_DIR}"
+```
+
 ### Jobs
 
 You can override or extend the given template jobs by adjusting individual aspects, e.g. the needed artifacts from the `build:node` job:
