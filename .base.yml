@@ -8,6 +8,9 @@ variables:
   # default is stage - this is overridden in prod deployment
   SSH_USER: ${SSH_USER_STAGE}
   SSH_HOST: ${SSH_HOST_STAGE}
+  # project paths - default both to root directory
+  PATH_CI_DIR: "${CI_PROJECT_DIR}"
+  PATH_PROJECT_DIR: "${PATH_CI_DIR}"
 
 #-----------------------------------------------------------------------------------------------------------------------
 # DEFAULT-DOCKER-IMAGE
@@ -57,7 +60,7 @@ stages:
 #-----------------------------------------------------------------------------------------------------------------------
 .base-deploy:
   variables:
-    COMPOSER_CACHE_DIR: '${CI_PROJECT_DIR}/.composer'
+    COMPOSER_CACHE_DIR: '${PATH_CI_DIR}/.composer'
   except:
     - schedules
     - pipelines
@@ -131,4 +134,4 @@ stages:
   script:
     # check if composer dependencies are actually available for the next steps
     # needed for manual or scheduled jobs with expired artifacts
-    - if [ ! -d ${CI_PROJECT_DIR}/vendor ]; then composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts --quiet -d ${CI_PROJECT_DIR}; fi
+    - if [ ! -d ${PATH_CI_DIR}/vendor ]; then composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts --quiet -d ${PATH_CI_DIR}; fi
