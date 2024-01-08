@@ -10,7 +10,7 @@ variables:
   SSH_HOST: ${SSH_HOST_STAGE}
   # project paths - default both to root directory
   PATH_CI_DIR: "${CI_PROJECT_DIR}"
-  PATH_PROJECT_DIR: "${PATH_CI_DIR}"
+  PATH_APP_DIR: "${PATH_CI_DIR}"
 
 #-----------------------------------------------------------------------------------------------------------------------
 # DEFAULT-DOCKER-IMAGE

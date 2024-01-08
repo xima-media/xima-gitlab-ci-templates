@@ -8,4 +8,4 @@ analyse:composer:lint:
   needs: [ "build:php" ]
   extends: .base-analyse
   script:
-    - composer run composer:normalize:check -d ${PATH_PROJECT_DIR}
+    - composer run composer:normalize:check -d ${PATH_APP_DIR}

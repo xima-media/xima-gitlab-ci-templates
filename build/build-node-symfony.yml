@@ -15,12 +15,12 @@ build:node:
   cache:
     key: assets-$CI_JOB_NAME-$CI_COMMIT_REF_NAME
     paths:
-      - ${PATH_PROJECT_DIR}/.npm-cache
-      - ${PATH_PROJECT_DIR}/node_modules
+      - ${PATH_APP_DIR}/.npm-cache
+      - ${PATH_APP_DIR}/node_modules
   artifacts:
     paths:
-      - ${PATH_PROJECT_DIR}/public/build
-      - ${PATH_PROJECT_DIR}/public/bundles
+      - ${PATH_APP_DIR}/public/build
+      - ${PATH_APP_DIR}/public/bundles
   script:
-    - npm ci --prefix ${PATH_PROJECT_DIR} --cache ${PATH_PROJECT_DIR}/.npm-cache --prefer-offline
-    - FEATURE_BRANCH_PATH_PUBLIC=/$CI_COMMIT_REF_NAME npm run build --prefix ${PATH_PROJECT_DIR}
+    - npm ci --prefix ${PATH_APP_DIR} --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
+    - FEATURE_BRANCH_PATH_PUBLIC=/$CI_COMMIT_REF_NAME npm run build --prefix ${PATH_APP_DIR}

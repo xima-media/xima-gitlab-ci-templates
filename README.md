@@ -23,7 +23,7 @@ Extend and override configuration variables:
 
 ```yaml
 variables:
-  PATH_PROJECT_DIR: "app/"
+  PATH_APP_DIR: "app/"
 ```
 
 Extend and override further ci jobs.
@@ -93,7 +93,7 @@ PATH_CI_DIR specifies path to composer.json with deployment dependencies. If you
 variables:
   # project paths - default both to root directory
   PATH_CI_DIR: "${CI_PROJECT_DIR}"
-  PATH_PROJECT_DIR: "${PATH_CI_DIR}"
+  PATH_APP_DIR: "${PATH_CI_DIR}"
 ```
 
 ### Jobs
@@ -104,8 +104,8 @@ You can override or extend the given template jobs by adjusting individual aspec
 build:node:
   artifacts:
     paths:
-      - ${PATH_PROJECT_DIR}/packages/xima-sitepackage/Resources/Public
-      - ${PATH_PROJECT_DIR}/packages/xima-media/Resources/Public
+      - ${PATH_APP_DIR}/packages/xima-sitepackage/Resources/Public
+      - ${PATH_APP_DIR}/packages/xima-media/Resources/Public
 ```
 
 ### Versions

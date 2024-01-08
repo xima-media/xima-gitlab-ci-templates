@@ -16,7 +16,7 @@ analyse:composer:security:scheduled:
   cache:
     key: security-$CI_JOB_NAME-$CI_COMMIT_REF_NAME
     paths:
-      - ${PATH_PROJECT_DIR}/vendor/xima/xima-deployer-tools/deployer/security/
+      - ${PATH_APP_DIR}/vendor/xima/xima-deployer-tools/deployer/security/
   variables:
     GIT_STRATEGY: fetch
   script:
