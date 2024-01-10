@@ -8,4 +8,4 @@ analyse:php:cs-fixer:
   needs: [ "build:php" ]
   extends: .base-analyse
   script:
-    - composer run php:cs-fixer:check -d ${PATH_PROJECT_DIR}
+    - composer run php:cs-fixer:check -d ${PATH_APP_DIR}

@@ -31,7 +31,8 @@ include:
 #-----------------------------------------------------------------------------------------------------------------------
 variables:
   # App
-  PATH_PROJECT_DIR: "${CI_PROJECT_DIR}"
+  # PATH_CI_DIR: "${CI_PROJECT_DIR}/htdocs" override this if composer.json for build is not in the root directory
+  # PATH_APP_DIR: "${PATH_CI_DIR}/app" override this if composer.json for project is not the root directory
   # Stage
   SSH_USER_STAGE: ""
   HOST_STAGE: ""

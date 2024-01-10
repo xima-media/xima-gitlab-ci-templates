@@ -8,4 +8,4 @@ analyse:yaml:lint:
   needs: [ "build:php" ]
   extends: .base-analyse
   script:
-    - composer run yaml:lint -d ${PATH_PROJECT_DIR}
+    - composer run yaml:lint -d ${PATH_APP_DIR}

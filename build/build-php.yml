@@ -15,12 +15,12 @@ build:php:
     key: composer-$CI_JOB_NAME-$CI_COMMIT_REF_NAME
     paths:
       - ${CI_PROJECT_DIR}/.composer
-      - ${PATH_PROJECT_DIR}/vendor/
+      - ${PATH_APP_DIR}/vendor/
   artifacts:
     paths:
-      - ${PATH_PROJECT_DIR}/vendor/
-      - ${PATH_PROJECT_DIR}/var/cache/
+      - ${PATH_APP_DIR}/vendor/
+      - ${PATH_APP_DIR}/var/cache/
   before_script:
     - composer config -g cache-dir "${CI_PROJECT_DIR}/.composer"
   script:
-    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts -d ${PATH_PROJECT_DIR}
+    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts -d ${PATH_APP_DIR}

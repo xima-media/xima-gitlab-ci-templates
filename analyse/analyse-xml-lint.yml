@@ -9,4 +9,4 @@ analyse:xml:lint:
   extends: .base-analyse
   script:
     - apt-get update -qq && apt-get install libxml2-utils -qq
-    - composer run xml:lint -d ${PATH_PROJECT_DIR}
+    - composer run xml:lint -d ${PATH_APP_DIR}
