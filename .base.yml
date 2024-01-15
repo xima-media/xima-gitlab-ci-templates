@@ -35,6 +35,7 @@ stages:
 #-----------------------------------------------------------------------------------------------------------------------
 .base-analyse:
   stage: analyse
+  extends: .feature-branches
   except:
     - schedules
     - pipelines
@@ -45,6 +46,7 @@ stages:
 #-----------------------------------------------------------------------------------------------------------------------
 .base-build:
   stage: build
+  extends: .feature-branches
   allow_failure: false
   except:
     - schedules
