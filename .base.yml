@@ -87,7 +87,7 @@ stages:
 #-----------------------------------------------------------------------------------------------------------------------
 .base-schedule:
   rules:
-    - if: $CI_TASK == "${SCHEDULE_TASK_NAME}"
+    - if: $CI_JOB_NAME == $SCHEDULE_TASK_NAME
       when: always
     - when: never
 
@@ -124,7 +124,8 @@ stages:
     ## Use ssh-keyscan to scan the keys of your private server. Replace gitlab.com
     ## with your own domain name. You can copy and repeat that command if you have
     ## more than one server to connect to.
-    - ssh-keyscan ${SSH_HOST} >> ~/.ssh/known_hosts
+    ## add all SSH_HOST variables to known_hosts file
+    - printenv | grep ^SSH_HOST | while read line; do ssh-keyscan ${line##*=} >> ~/.ssh/known_hosts; done
     - echo "${SSH_HOST}" >> /etc/hosts
     - echo -e "Host *\n\tStrictHostKeyChecking yes\n\tUserKnownHostsFile=~/.ssh/known_hosts\n\n" > ~/.ssh/config
     - echo -e "\e[0Ksection_end:`date +%s`:${DATE}\r\e[0K"

@@ -4,14 +4,11 @@
 # Dependency:
 #   XIMA Deployer Tools
 #
-variables:
-  SCHEDULE_TASK_NAME: "sync:feature:scheduled"
-
 sync:feature:scheduled:
   stage: sync
   extends:
     - .ssh
-    - .deploy-base-feature
+    - .base-deploy-feature
     - .base-schedule
   dependencies: [ ]
   variables:
