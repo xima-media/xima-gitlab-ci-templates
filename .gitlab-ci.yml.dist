@@ -22,10 +22,12 @@ include:
       - '/deploy/deploy-feature-stop-downstream.yml'
       - '/deploy/deploy-prod.yml'
       - '/sync/sync-feature.yml'
-      - '/sync/sync-feature-scheduled.yml'
       - '/test/test-feature-codeception.yml'
       - '/test/test-feature-lighthouse.yml'
       - '/test/test-prod-lighthouse.yml'
+      # these are scheduled jobs - see readme how to setup
+      - '/sync/sync-feature-scheduled.yml'
+      - '/analyse-composer-security-scheduled.yml'
 
 #-----------------------------------------------------------------------------------------------------------------------
 # CONFIGURATION

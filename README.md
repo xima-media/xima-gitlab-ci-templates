@@ -34,17 +34,17 @@ See further default configuration in the [.base.yml](.base.yml).
 
 ### Analyse
 
-| Job name                              | File                                                                                | Description                                                                                |
-|---------------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `analyse:composer:lint`               | [analyse-composer-lint.yml](./analyse/analyse-composer-lint.yml)                    | Use composer normalize to lint `composer.json` via `composer run composer:normalize:check` |
-| `analyse:composer:security:scheduled` | [analyse-composer-security-scheduled.yml](./analyse/analyse-composer-security-scheduled.yml) | Run composer dependency check via `vendor/bin/dep security:check:composer`                 |
-| `analyse:editorconfig`                | [analyse-editorconfig.yml](./analyse/analyse-editorconfig.yml)                      | Check editorconfig for project files via `composer run editorconfig:check`                 |
-| `analyse:php:cs-fixer`                | [analyse-php-cs-fixer.yml](./analyse/analyse-php-cs-fixer.yml)                      | Run php cs fixer to fix regarding coding standards via `composer run php:cs-fixer:check`   |
-| `analyse:php:lint`                    | [analyse-php-lint.yml](./analyse/analyse-php-lint.yml)                              | Run php lint via `composer run php:lint`                                                   |
-| `analyse:php:rector`                  | [analyse-php-rector.yml](./analyse/analyse-php-rector.yml)                          | Run php rector via `composer run php:rector:check`                                         |
-| `analyse:php:stan`                    | [analyse-php-stan.yml](./analyse/analyse-php-stan.yml)                              | Run php stan via `composer run php:stan:check`                                             |
-| `analyse:xml:lint`                    | [analyse-xml-lint.yml](./analyse/analyse-xml-lint.yml)                              | Lint xml files via `composer run xml:lint`                                                 |
-| `analyse:yaml:lint`                   | [analyse-yaml-lint.yml](./analyse/analyse-yaml-lint.yml)                            | Lint yaml files via `composer run yaml:lint`                                               |
+| Job name                               | File                                                                                | Description                                                                                |
+|----------------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `analyse:composer:lint`                | [analyse-composer-lint.yml](./analyse/analyse-composer-lint.yml)                    | Use composer normalize to lint `composer.json` via `composer run composer:normalize:check` |
+| `analyse:composer:security:scheduled`* | [analyse-composer-security-scheduled.yml](./analyse/analyse-composer-security-scheduled.yml) | Run composer dependency check via `vendor/bin/dep security:check:composer`                 |
+| `analyse:editorconfig`                 | [analyse-editorconfig.yml](./analyse/analyse-editorconfig.yml)                      | Check editorconfig for project files via `composer run editorconfig:check`                 |
+| `analyse:php:cs-fixer`                 | [analyse-php-cs-fixer.yml](./analyse/analyse-php-cs-fixer.yml)                      | Run php cs fixer to fix regarding coding standards via `composer run php:cs-fixer:check`   |
+| `analyse:php:lint`                     | [analyse-php-lint.yml](./analyse/analyse-php-lint.yml)                              | Run php lint via `composer run php:lint`                                                   |
+| `analyse:php:rector`                   | [analyse-php-rector.yml](./analyse/analyse-php-rector.yml)                          | Run php rector via `composer run php:rector:check`                                         |
+| `analyse:php:stan`                     | [analyse-php-stan.yml](./analyse/analyse-php-stan.yml)                              | Run php stan via `composer run php:stan:check`                                             |
+| `analyse:xml:lint`                     | [analyse-xml-lint.yml](./analyse/analyse-xml-lint.yml)                              | Lint xml files via `composer run xml:lint`                                                 |
+| `analyse:yaml:lint`                    | [analyse-yaml-lint.yml](./analyse/analyse-yaml-lint.yml)                            | Lint yaml files via `composer run yaml:lint`                                               |
 
 
 ### Build
@@ -69,10 +69,10 @@ See further default configuration in the [.base.yml](.base.yml).
 
 ### Sync
 
-| Job name                 | File                                                            | Description                                                         |
-|--------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------|
-| `sync:feature`           | [sync-feature.yml](./sync/sync-feature.yml)                     | Sync the data for a feature branch instance                         |
-| `sync:feature:scheduled` | [sync-feature-scheduled.yml](./sync/sync-feature-scheduled.yml) | Sync the data for a feature branch instance via a periodic schedule |
+| Job name                  | File                                                            | Description                                                         |
+|---------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------|
+| `sync:feature`            | [sync-feature.yml](./sync/sync-feature.yml)                     | Sync the data for a feature branch instance                         |
+| `sync:feature:scheduled`* | [sync-feature-scheduled.yml](./sync/sync-feature-scheduled.yml) | Sync the data for a feature branch instance via a periodic schedule |
 
 ### Test
 
@@ -81,6 +81,32 @@ See further default configuration in the [.base.yml](.base.yml).
 | `test:feature:codeception` | [test-feature-codeception.yml](./test/test-feature-codeception.yml) | Test the feature branch instance via codeception       |
 | `test:feature:lighthouse`  | [test-feature-lighthouse.yml](./test/test-feature-lighthouse.yml)   | Test the feature branch instance via google lighthouse |
 | `test:prod:lighthouse`     | [test-prod-lighthouse.yml](./test/test-prod-lighthouse.yml)         | The the production system via google lighthouse        |
+
+`*` these jobs are scheduled and need a "Pipeline Schedule" to trigger them.
+## Setup Pipeline Schedules
+In your gitlab project navigat to `Build -> Pipeline Schedules` and create a news pipeline schedule.
+Beside giving it a description and an interval you need to specify a branch and optional variables.
+
+In most cases the branch "main" should be the preferred choice.
+
+Variable Setup for scheduled jobs:
+
+Job: `analyse:composer:security:scheduled`
+
+| Variable                   | Value                                                               | Description                                            |
+|----------------------------|---------------------------------------------------------------------|--------------------------------------------------------|
+| `SCHEDULE_TASK_NAME` | analyse:composer:security:scheduled | The job name to execute        |
+
+
+Job: `sync:feature:scheduled`
+
+| Variable                   | Value                                                               | Description                       |
+|----------------------------|---------------------------------------------------------------------|-----------------------------------|
+| `SCHEDULE_TASK_NAME` | sync:feature:scheduled | The job name to execute           |
+| `DEPLOYER_CONFIG_FEATURE_SYNC_CONFIG`  | ${CI_PROJECT_DIR}/.deployment/db-sync-tool/sync-prod-to-stage.yaml   | config for the scheduled sync job |
+
+
+
 
 ## Adjustments
 

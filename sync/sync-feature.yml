@@ -8,9 +8,12 @@ sync:feature:
   stage: sync
   extends:
     - .ssh
-    - .base-deploy
     - .base-deploy-feature
     - .feature-branches
+  except:
+    - schedules
+    - pipelines
+    - main
   dependencies: [ ]
   variables:
     GIT_STRATEGY: fetch
