@@ -1,0 +1,17 @@
+# Purpose:
+#   Rollback a last deployed release
+#
+# Dependency:
+#   XIMA Deployer Tools
+#
+deploy:prod:rollback:
+  extends:
+    - .ssh
+    - .base-deploy
+  stage: deploy.prod
+  script:
+    - !reference [.check-deployment-dependencies, script]
+    # rollback feature
+    - ${PATH_CI_DIR}/vendor/bin/dep deploy:unlock prod $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    - ${PATH_CI_DIR}/vendor/bin/dep rollback prod $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+  when: manual

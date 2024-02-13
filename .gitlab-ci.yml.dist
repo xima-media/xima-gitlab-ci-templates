@@ -21,6 +21,7 @@ include:
       - '/deploy/deploy-feature-stop.yml'
       - '/deploy/deploy-feature-stop-downstream.yml'
       - '/deploy/deploy-prod.yml'
+      - '/deploy/deploy-prod-rollback.yml'
       - '/sync/sync-feature.yml'
       - '/test/test-feature-codeception.yml'
       - '/test/test-feature-lighthouse.yml'
