@@ -59,13 +59,14 @@ See further default configuration in the [.base.yml](.base.yml).
 
 ### Deploy
 
-| Job name                         | File                                                                              | Description                                                                                                    |
-|----------------------------------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| `deploy:feature`                 | [deploy-feature.yml](./deploy/deploy-feature.yml)                                 | Deploy a feature branch instance to a staging system                                                           |
-| `deploy:feature:rollback`        | [deploy-feature-rollback.yml](./deploy/deploy-feature-rollback.yml)               | Rollback a deployment release for a feature branch                                                             |
+| Job name                         | File                                                                              | Description                                                                                             |
+|----------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| `deploy:feature`                 | [deploy-feature.yml](./deploy/deploy-feature.yml)                                 | Deploy a feature branch instance to a staging system                                                    |
+| `deploy:feature:rollback`        | [deploy-feature-rollback.yml](./deploy/deploy-feature-rollback.yml)               | Rollback a deployment release for a feature branch                                                      |
 | `deploy:feature:stop`            | [deploy-feature-stop.yml](./deploy/deploy-feature-stop.yml)                       | Stop a feature branch instance and remove the application from the staging system (trigger the downstream job) |
-| `deploy:feature:stop:downstream` | [deploy-feature-stop-downstream.yml](./deploy/deploy-feature-stop-downstream.yml) | Stop a feature branch instance and remove the application from the staging system                              |
-| `deploy:prod`                    | [deploy-prod.yml](./deploy/deploy-prod.yml)                                       | Deploy to the production system                                                                                |
+| `deploy:feature:stop:downstream` | [deploy-feature-stop-downstream.yml](./deploy/deploy-feature-stop-downstream.yml) | Stop a feature branch instance and remove the application from the staging system                       |
+| `deploy:prod`                    | [deploy-prod.yml](./deploy/deploy-prod.yml)                                       | Deploy to the production system                                                                         |
+| `deploy:prod:rollback`           | [deploy-prod-rollback.yml](./deploy/deploy-prod-rollback.yml)                     | Rollback a deployment release for production                                                            |
 
 ### Sync
 
