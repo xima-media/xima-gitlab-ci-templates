@@ -24,10 +24,10 @@ build:node:
       - $ADMIN_THEME_PATH/dist
       - $FRONTEND_THEME_PATH/dist
   script:
-    - echo "build.admin.theme in $ADMIN_THEME_PATH"
-    - cd $ADMIN_THEME_PATH
-    - npm ci --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
-    - npm run build
+    - \[ -n "$ADMIN_THEME_PATH" \] && echo "build.admin.theme in $ADMIN_THEME_PATH"
+    - \[ -n "$ADMIN_THEME_PATH" \] && cd $ADMIN_THEME_PATH
+    - \[ -n "$ADMIN_THEME_PATH" \] && npm ci --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
+    - \[ -n "$ADMIN_THEME_PATH" \] && npm run build
     - echo "build frontend theme in $FRONTEND_THEME_PATH"
     - cd $FRONTEND_THEME_PATH
     - npm ci --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
