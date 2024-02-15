@@ -1,0 +1,34 @@
+# Purpose:
+#   Install node dependencies and build frontend assets for a Drupal application
+#
+# Dependency:
+#   Npm script "build"
+#
+# Configuration:
+#   Adjust the needed artifact paths
+#
+build:node:
+  extends: .base-build
+  image:
+    name: docker-os.artifactory.xima-services.de/webs-drupal-visitberlin-grunt:node16
+    pull_policy: if-not-present
+  cache:
+    key: assets-$CI_JOB_NAME-$CI_COMMIT_REF_NAME
+    paths:
+      - $ADMIN_THEME_PATH/.sass-cache
+      - $ADMIN_THEME_PATH/node_modules
+      - $FRONTEND_THEME_PATH/.sass-cache
+      - $FRONTEND_THEME_PATH/node_modules
+  artifacts:
+    paths:
+      - $ADMIN_THEME_PATH/dist
+      - $FRONTEND_THEME_PATH/dist
+  script:
+    - \[ -n "$ADMIN_THEME_PATH" \] && echo "build.admin.theme in $ADMIN_THEME_PATH"
+    - \[ -n "$ADMIN_THEME_PATH" \] && cd $ADMIN_THEME_PATH
+    - \[ -n "$ADMIN_THEME_PATH" \] && npm ci --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
+    - \[ -n "$ADMIN_THEME_PATH" \] && npm run build
+    - echo "build frontend theme in $FRONTEND_THEME_PATH"
+    - cd $FRONTEND_THEME_PATH
+    - npm ci --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
+    - npm run build
