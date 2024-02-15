@@ -26,9 +26,9 @@ build:node:
   script:
     - echo "build.admin.theme in $ADMIN_THEME_PATH"
     - cd $ADMIN_THEME_PATH
-    - npm ci --prefix ${ADMIN_THEME_PATH} --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
+    - npm ci --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
     - node_modules/.bin/grunt theme
     - echo "build frontend theme in $FRONTEND_THEME_PATH"
     - cd $FRONTEND_THEME_PATH
-    - npm ci --prefix ${FRONTEND_THEME_PATH} --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
+    - npm ci --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
     - node_modules/.bin/grunt theme
