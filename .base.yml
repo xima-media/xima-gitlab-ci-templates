@@ -54,7 +54,7 @@ stages:
     - tags
   artifacts:
     when: on_success
-    expire_in: 1 hour
+    expire_in: 36 hour
     untracked: true
 
 #-----------------------------------------------------------------------------------------------------------------------
