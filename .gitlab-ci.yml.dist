@@ -32,7 +32,7 @@ include:
       - '/test/test-prod-lighthouse.yml'
       # these are scheduled jobs - see readme how to setup
       - '/sync/sync-feature-scheduled.yml'
-      - '/analyse-composer-security-scheduled.yml'
+      - '/analyse/analyse-composer-security-scheduled.yml'
 
 #-----------------------------------------------------------------------------------------------------------------------
 # CONFIGURATION
