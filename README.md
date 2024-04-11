@@ -9,6 +9,7 @@ This repository provides several templates for reusable GitLab-CI jobs.
 See [.gitlab-ci.yml.dist](.gitlab-ci.yml.dist) for example GitLab-CI configuration.
 
 Use `include` to reference template files:
+(see .gitlab-ci.yaml.dist for all possible includes)
 
 ```yaml
 include:
@@ -49,15 +50,14 @@ See further default configuration in the [.base.yml](.base.yml).
 
 ### Build
 
-| Job name     | File                                                     | Description                                    |
-|--------------|----------------------------------------------------------|------------------------------------------------|
-| `build:node` | [build-node.yml](./build/build-node.yml)                 | Load frontend dependencies and build frontend  |
-| `build:node` | [build-node-drupal.yml](./build/build-node-drupal.yml)   | Drupal specific node build job                 |
+| Job name     | File                          | Description                                    |
+|--------------|-------------------------------|------------------------------------------------|
+| `build:node` | [build-node-typo3.yml](./build/build-node-typo3.yml)   | TYPO3 specific node build job                  |
+| `build:php`  | [build-php-typo3.yml](./build/build-php-typo3.yml)    | TYPO3 specific php build job                   |
+| `build:node` | [build-node-drupal.yml](./build/build-node-drupal.yml)  | Drupal specific node build job                 |
+| `build:php`  | [build-php-drupal.yml](./build/build-php-drupal.yml)   | Drupal specific php build job                  |
 | `build:node` | [build-node-symfony.yml](./build/build-node-symfony.yml) | Symfony specific node build job                |
-| `build:node` | [build-node-typo3.yml](./build/build-node-typo3.yml)     | TYPO3 specific node build job                  |
-| `build:php`  | [build-php.yml](./build/build-php.yml)                   | Load php dependencies via composer             |
-| `build:php`  | [build-php-drupal.yml](./build/build-php-drupal.yml)     | Drupal specific php build job                  |
-| `build:php`  | [build-php-typo3.yml](./build/build-php-typo3.yml)       | TYPO3 specific php build job                   |
+| `build:php`  | [build-php-symfony.yml](./build/.build-php.yml)  | Symfony specific php build job             |
 
 ### Deploy
 

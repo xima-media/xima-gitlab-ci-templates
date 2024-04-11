@@ -7,7 +7,11 @@ include:
     file:
       - '/.base.yml'
       - '/build/build-php-typo3.yml'
+      # - '/build/build-php-drupal.yml'
+      # - '/build/build-php-symfony.yml'
       - '/build/build-node-typo3.yml'
+      # - '/build/build-node-drupal.yml'
+      # - '/build/build-node-symfony.yml'
       - '/analyse/analyse-composer-lint.yml'
       - '/analyse/analyse-editorconfig.yml'
       - '/analyse/analyse-php-cs-fixer.yml'

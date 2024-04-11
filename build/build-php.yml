@@ -4,23 +4,10 @@
 # Configuration:
 #   Adjust the needed artifact paths
 #
+# @deprecation this file is kept for backwards compatibility and will be removed in the future.
+# It's highly recommended to avoid including this file but instead include one of the more specific files like build-php-*.yaml.
+#
+include: '/build/.build-php.yml'
+
 build:php:
-  extends: .base-build
-  image:
-    name: composer:${BUILD_COMPOSER_VERSION}
-    pull_policy: if-not-present
-  variables:
-    COMPOSER_CACHE_DIR: '${CI_PROJECT_DIR}/.composer'
-  cache:
-    key: composer-$CI_JOB_NAME-$CI_COMMIT_REF_NAME
-    paths:
-      - ${CI_PROJECT_DIR}/.composer
-      - ${PATH_APP_DIR}/vendor/
-  artifacts:
-    paths:
-      - ${PATH_APP_DIR}/vendor/
-      - ${PATH_APP_DIR}/var/cache/
-  before_script:
-    - composer config -g cache-dir "${CI_PROJECT_DIR}/.composer"
-  script:
-    - composer install --ignore-platform-reqs --optimize-autoloader --no-ansi --no-interaction --no-progress --no-scripts -d ${PATH_APP_DIR}
+  extends: .build-php
