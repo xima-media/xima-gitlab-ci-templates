@@ -15,5 +15,7 @@ sync:feature:scheduled:
     GIT_STRATEGY: fetch
   script:
     - !reference [.check-deployment-dependencies, script]
+    # upgrade db-sync-tool
+    - pip3 install --quiet --disable-pip-version-check --root-user-action=ignore --user --upgrade db-sync-tool-kmi file-sync-tool-kmi
     # sync stage
     - ${PATH_CI_DIR}/vendor/bin/dep feature:sync stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
