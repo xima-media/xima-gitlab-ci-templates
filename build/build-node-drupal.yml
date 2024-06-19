@@ -22,6 +22,3 @@ build:node:
     paths:
       - $ADMIN_THEME_PATH/dist
       - $FRONTEND_THEME_PATH/dist
-  #script:
-  #  - npm ci --cache ${PATH_APP_DIR}/.npm-cache --prefer-offline
-  #  - npm run build
