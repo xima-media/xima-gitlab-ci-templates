@@ -31,4 +31,3 @@ build:php:
       - ${PATH_APP_DIR}/web/robots.txt
   before_script:
     - composer config -g cache-dir "${PATH_CI_DIR}/.composer"
-    - composer config -g github-oauth.github.com $BUILD_GITHUB_TOKEN -d ${PATH_CI_DIR}
