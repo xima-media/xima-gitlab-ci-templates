@@ -1,0 +1,11 @@
+# Purpose:
+#   Analyse job for simply linting all typoscript files
+#
+# Dependency:
+#   Composer script "typoscript:lint"
+#
+analyse:typoscript:lint:
+  needs: [ "build:php" ]
+  extends: .base-analyse
+  script:
+    - composer run typoscript:lint -d ${PATH_APP_DIR}

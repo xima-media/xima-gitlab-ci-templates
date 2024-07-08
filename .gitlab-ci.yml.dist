@@ -20,6 +20,7 @@ include:
       - '/analyse/analyse-php-stan.yml'
       - '/analyse/analyse-xml-lint.yml'
       - '/analyse/analyse-yaml-lint.yml'
+      - '/analyse/analyse-typoscript-lint.yml'
       - '/deploy/deploy-feature.yml'
       - '/deploy/deploy-feature-rollback.yml'
       - '/deploy/deploy-feature-stop.yml'
