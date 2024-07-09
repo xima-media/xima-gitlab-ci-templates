@@ -1,0 +1,6 @@
+jobs:
+  yaml:lint:
+    container: pipelinecomponents/yamllint:latest
+    steps:
+      - run: yamllint --version
+      - run: yamllint -d relaxed .

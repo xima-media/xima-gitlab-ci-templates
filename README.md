@@ -13,11 +13,9 @@ Use `include` to reference template files:
 
 ```yaml
 include:
-  - project: 'symfony-cms/general/misc/gitlab-ci-templates'
-    ref: 1.x
-    file:
-      - '/.base.yml'
-      - '/analyse/analyse-composer.yml'
+   - 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/1.x/.base.yml'
+   - 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/1.x/analyse/analyse-composer.yml'
+   - ... 
 ```
 
 Extend and override configuration variables:
