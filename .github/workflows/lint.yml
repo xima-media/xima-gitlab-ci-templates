@@ -1,5 +1,10 @@
+name: 'Linter'
+
+on: [push, pull_request]
+
 jobs:
-  yaml:lint:
+  yaml-lint:
+    runs-on: ubuntu-latest
     container: pipelinecomponents/yamllint:latest
     steps:
       - run: yamllint --version
