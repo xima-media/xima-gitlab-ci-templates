@@ -7,7 +7,6 @@
 # @deprecation this file is kept for backwards compatibility and will be removed in the future.
 # It's highly recommended to avoid including this file but instead include one of the more specific files like build-php-*.yaml.
 #
-include: '/build/.build-php.yml'
 
 build:php:
   extends: .build-php
