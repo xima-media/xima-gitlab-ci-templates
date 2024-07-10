@@ -10,7 +10,7 @@
 # @deprecation this file is kept for backwards compatibility and will be removed in the future.
 # It's highly recommended to avoid including this file but instead include one of the more specific files like build-node-*.yaml.
 #
-include: '/build/.build-node.yml'
+include: 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/1.x/build/.build-node.yml'
 
 build:node:
   extends: .build-node
