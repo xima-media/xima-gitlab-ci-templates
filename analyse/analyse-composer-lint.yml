@@ -7,5 +7,9 @@
 analyse:composer:lint:
   needs: [ "build:php" ]
   extends: .base-analyse
+  rules:
+    - changes:
+        - "**/composer.json"
+        - "**/composer.lock"
   script:
     - composer run composer:normalize:check -d ${PATH_APP_DIR}

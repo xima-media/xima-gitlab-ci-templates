@@ -7,5 +7,10 @@
 analyse:typoscript:lint:
   needs: [ "build:php" ]
   extends: .base-analyse
+  rules:
+    - changes:
+        - "**/*.typoscript"
+        - "**/*.tsconfig"
+        - "**/Configuration/**/*.ts"
   script:
     - composer run typoscript:lint -d ${PATH_APP_DIR}
