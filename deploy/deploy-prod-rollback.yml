@@ -14,6 +14,7 @@ deploy:prod:rollback:
     # rollback prod
     - ${PATH_CI_DIR}/vendor/bin/dep deploy:unlock prod $DEPLOYER_CONFIG_ADDITIONAL_OPTION
     - ${PATH_CI_DIR}/vendor/bin/dep rollback prod $DEPLOYER_CONFIG_ADDITIONAL_OPTION
-  only:
-    - main
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
   when: manual

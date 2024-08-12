@@ -21,6 +21,7 @@ deploy:prod:
     # deploy prod
     - ${PATH_CI_DIR}/vendor/bin/dep deploy prod $DEPLOYER_CONFIG_ADDITIONAL_OPTION
     - ${PATH_CI_DIR}/vendor/bin/dep deploy:prod:notify prod
-  only:
-    - main
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
   allow_failure: false

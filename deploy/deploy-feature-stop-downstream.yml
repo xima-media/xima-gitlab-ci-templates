@@ -5,16 +5,18 @@
 #   XIMA Deployer Tools
 #
 deploy:feature:stop:downstream:
-  only:
-    - pipelines
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "pipeline"'
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - if: '$CI_COMMIT_TAG'
+      when: never
   extends:
     - .ssh
     - .base-deploy
     - .base-deploy-feature
     - .feature-branches
-  except:
-    - schedules
-    - tags
   dependencies: [ ]
   variables:
     DEPLOYER_CONFIG_DATABASE_PASSWORD: $DB_PASSWORD_STAGE

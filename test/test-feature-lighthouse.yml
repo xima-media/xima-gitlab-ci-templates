@@ -9,10 +9,13 @@ test:feature:lighthouse:
   extends:
     - .feature-branches
     - .base-test
-  except:
-    - schedules
-    - pipelines
-    - main
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "pipeline"'
+      when: never
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: never
   script:
     - npm install -g @lhci/cli@0.12.x
     - lhci autorun --config=./.lighthouserc.js --collect.url="$URL_TO_TEST" || echo "LHCI failed!"
