@@ -80,10 +80,13 @@ stages:
 .feature-branches:
   variables:
     FEATURE_STOP_DOWNSTREAM_BRANCH: main
-  only:
-    - /^release-(.*)/
-    - /^feature-.*$/
-    - main
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^release-.*$/'
+      when: always
+    - if: '$CI_COMMIT_REF_NAME =~ /^feature-.*$/'
+      when: always
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
 
 #-----------------------------------------------------------------------------------------------------------------------
 # SCHEDULE
