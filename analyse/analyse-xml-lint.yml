@@ -7,6 +7,9 @@
 analyse:xml:lint:
   needs: [ "build:php" ]
   extends: .base-analyse
+  rules:
+    - changes:
+        - "**/*.xlf"
   script:
     - apt-get update -qq && apt-get install libxml2-utils -qq
     - composer run xml:lint -d ${PATH_APP_DIR}

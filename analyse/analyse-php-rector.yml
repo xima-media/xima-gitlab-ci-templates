@@ -7,5 +7,8 @@
 analyse:php:rector:
   needs: [ "build:php" ]
   extends: .base-analyse
+  rules:
+    - changes:
+        - "**/*.php"
   script:
     - composer run php:rector:check -d ${PATH_APP_DIR}

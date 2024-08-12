@@ -7,5 +7,10 @@
 analyse:yaml:lint:
   needs: [ "build:php" ]
   extends: .base-analyse
+  rules:
+    - if
+    - changes:
+        - "**/*.yml"
+        - "**/*.yaml"
   script:
     - composer run yaml:lint -d ${PATH_APP_DIR}
