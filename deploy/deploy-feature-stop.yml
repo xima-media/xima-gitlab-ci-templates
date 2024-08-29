@@ -14,10 +14,9 @@ deploy:feature:stop:
   dependencies: [ ]
   script:
     # trigger downstream pipeline
-    - curl --request POST --form "token=$CI_JOB_TOKEN" --form "variables[UPSTREAM_BRANCH]=$CI_COMMIT_REF_NAME" --form ref=$FEATURE_STOP_DOWNSTREAM_BRANCH "https://$GITLAB_HOST/api/v4/projects/$CI_PROJECT_ID/trigger/pipeline"
+    - curl --request POST --form "token=$CI_JOB_TOKEN" --form "variables[UPSTREAM_BRANCH]=$CI_COMMIT_REF_NAME" --form ref=$FEATURE_STOP_DOWNSTREAM_BRANCH "$CI_SERVER_URL/api/v4/projects/$CI_PROJECT_ID/trigger/pipeline"
   variables:
     GIT_STRATEGY: none
-    GITLAB_HOST: "git.xima.de"
   when: manual
   environment:
     action: stop
