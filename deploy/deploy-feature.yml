@@ -15,11 +15,12 @@ deploy:feature:
     - build:node
   variables:
     DEPLOYER_CONFIG_DATABASE_PASSWORD: $DB_PASSWORD_STAGE
+    DEPLOYER_CONFIG_FEATURE_BRANCH_HOST: stage
   script:
     - !reference [.check-deployment-dependencies, script]
     # deploy feature
-    - ${PATH_CI_DIR}/vendor/bin/dep deploy:unlock stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
-    - ${PATH_CI_DIR}/vendor/bin/dep deploy stage --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    - ${PATH_CI_DIR}/vendor/bin/dep deploy:unlock $DEPLOYER_CONFIG_FEATURE_BRANCH_HOST --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
+    - ${PATH_CI_DIR}/vendor/bin/dep deploy $DEPLOYER_CONFIG_FEATURE_BRANCH_HOST --feature=$CI_COMMIT_REF_NAME $DEPLOYER_CONFIG_ADDITIONAL_OPTION
   environment:
     on_stop: deploy:feature:stop
     auto_stop_in: 3 months
