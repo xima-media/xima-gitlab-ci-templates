@@ -8,9 +8,11 @@ deploy:feature:stop:
   extends:
     - .base-deploy-feature
     - .feature-branches
-  except:
-    - schedules
-    - pipelines
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "pipeline"'
+      when: never
   dependencies: [ ]
   script:
     # trigger downstream pipeline
