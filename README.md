@@ -85,6 +85,7 @@ See further default configuration in the [.base.yml](.base.yml).
 | `test:prod:lighthouse`     | [test-prod-lighthouse.yml](./test/test-prod-lighthouse.yml)         | The the production system via google lighthouse        |
 
 `*` these jobs are scheduled and need a "Pipeline Schedule" to trigger them.
+
 ## Setup Pipeline Schedules
 In your gitlab project navigat to `Build -> Pipeline Schedules` and create a news pipeline schedule.
 Beside giving it a description and an interval you need to specify a branch and optional variables.
@@ -111,6 +112,20 @@ Job: `sync:feature:scheduled`
 
 
 ## Adjustments
+
+> **Notice**: Don't use `only` or `except` in your `.gitlab-ci.yml` file. Instead, use the `rules` keyword.
+
+### Feature Branches
+
+Extend the feature branches to your needs. The default configuration is as follows:
+
+```
+.feature-branches:
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^release-(.*)$/'
+    - if: '$CI_COMMIT_REF_NAME =~ /^feature-.*$/'
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+```
 
 ### Paths
 

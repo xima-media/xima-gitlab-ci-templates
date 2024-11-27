@@ -12,9 +12,11 @@ deploy:feature:stop:downstream:
     - .base-deploy
     - .base-deploy-feature
     - .feature-branches
-  except:
-    - schedules
-    - tags
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - if: '$CI_COMMIT_TAG != null'
+      when: never
   dependencies: [ ]
   variables:
     DEPLOYER_CONFIG_DATABASE_PASSWORD: $DB_PASSWORD_STAGE
