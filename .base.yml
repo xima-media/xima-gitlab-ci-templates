@@ -11,6 +11,8 @@ variables:
   # project paths - default both to root directory
   PATH_CI_DIR: "${CI_PROJECT_DIR}"
   PATH_APP_DIR: "${PATH_CI_DIR}"
+  # misc
+  BASE_BRANCH: "main"
 
 #-----------------------------------------------------------------------------------------------------------------------
 # DEFAULT-DOCKER-IMAGE
@@ -35,14 +37,6 @@ stages:
 #-----------------------------------------------------------------------------------------------------------------------
 .base-analyse:
   stage: analyse
-  extends: .feature-branches
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: never
-    - if: '$CI_PIPELINE_SOURCE == "pipeline"'
-      when: never
-    - if: '$CI_COMMIT_TAG != null'
-      when: never
 
 #-----------------------------------------------------------------------------------------------------------------------
 # BUILD
@@ -56,7 +50,7 @@ stages:
       when: never
     - if: '$CI_PIPELINE_SOURCE == "pipeline"'
       when: never
-    - if: '$CI_COMMIT_TAG != null'
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
       when: never
   artifacts:
     when: on_success
@@ -74,7 +68,7 @@ stages:
       when: never
     - if: '$CI_PIPELINE_SOURCE == "pipeline"'
       when: never
-    - if: '$CI_COMMIT_TAG != null'
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
       when: never
 
 .base-deploy-feature:
@@ -86,18 +80,18 @@ stages:
 
 .feature-branches:
   variables:
-    FEATURE_STOP_DOWNSTREAM_BRANCH: main
+    FEATURE_STOP_DOWNSTREAM_BRANCH: $BASE_BRANCH
   rules:
     - if: '$CI_COMMIT_REF_NAME =~ /^release-(.*)$/'
     - if: '$CI_COMMIT_REF_NAME =~ /^feature-.*$/'
-    - if: '$CI_COMMIT_REF_NAME == "main"'
+    - if: '$CI_COMMIT_REF_NAME == $BASE_BRANCH'
 
 #-----------------------------------------------------------------------------------------------------------------------
 # SCHEDULE
 #-----------------------------------------------------------------------------------------------------------------------
 .base-schedule:
   rules:
-    - if: $CI_JOB_NAME == $SCHEDULE_TASK_NAME
+    - if: '$CI_JOB_NAME == $SCHEDULE_TASK_NAME'
       when: always
     - when: never
 
