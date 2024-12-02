@@ -7,7 +7,7 @@
 # Configuration:
 #   Adjust the needed artifact paths
 #
-include: 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/1.x/build/.build-node.yml'
+include: 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/2.x/build/.build-node.yml'
 
 build:node:
   extends: .build-node
