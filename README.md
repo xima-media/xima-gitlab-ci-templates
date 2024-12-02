@@ -13,8 +13,8 @@ Use `include` to reference template files:
 
 ```yaml
 include:
-   - 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/1.x/.base.yml'
-   - 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/1.x/analyse/analyse-composer.yml'
+   - 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/2.x/.base.yml'
+   - 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/2.x/analyse/analyse-composer.yml'
    - ... 
 ```
 
@@ -172,5 +172,5 @@ This is useful if main branch does not contain the current pipeline setup and th
 
 ## Development
 
-The development workflow provides for all minor changes to be checked into the "1.x" branch so that all associated projects automatically receive the latest version from this branch.
+The development workflow provides for all minor changes to be checked into the "2.x" branch so that all associated projects automatically receive the latest version from this branch.
 If there are breaking changes, a new branch "2.x" is created so that the associated projects can be updated manually.

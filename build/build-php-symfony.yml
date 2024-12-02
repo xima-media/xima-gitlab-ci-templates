@@ -4,7 +4,7 @@
 # Configuration:
 #   Adjust the needed artifact paths
 #
-include: 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/1.x/build/.build-php.yml'
+include: 'https://raw.githubusercontent.com/xima-media/xima-gitlab-ci-templates/2.x/build/.build-php.yml'
 
 build:php:
   extends: .build-php
