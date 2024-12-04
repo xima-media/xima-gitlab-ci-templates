@@ -7,5 +7,7 @@
 analyse:editorconfig:
   needs: [ "build:php" ]
   extends: .base-analyse
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ $FEATURE_BRANCHES_REGEX'
   script:
     - composer run editorconfig:check -d ${PATH_APP_DIR}

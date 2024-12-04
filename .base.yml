@@ -13,6 +13,7 @@ variables:
   PATH_APP_DIR: "${PATH_CI_DIR}"
   # misc
   BASE_BRANCH: "main"
+  FEATURE_BRANCHES_REGEX: "/^(release-(.*)|feature-(.*)|$BASE_BRANCH)$/"
 
 #-----------------------------------------------------------------------------------------------------------------------
 # DEFAULT-DOCKER-IMAGE
@@ -52,6 +53,7 @@ stages:
       when: never
     - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
       when: never
+    - if: '$CI_COMMIT_REF_NAME =~ $FEATURE_BRANCHES_REGEX'
   artifacts:
     when: on_success
     expire_in: 36 hour
@@ -77,14 +79,18 @@ stages:
   environment:
     name: $CI_COMMIT_REF_NAME
     url: $ENVIRONMENT_URL
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "pipeline"'
+      when: never
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+      when: never
+    - if: '$CI_COMMIT_REF_NAME =~ $FEATURE_BRANCHES_REGEX'
 
 .feature-branches:
   variables:
     FEATURE_STOP_DOWNSTREAM_BRANCH: $BASE_BRANCH
-  rules:
-    - if: '$CI_COMMIT_REF_NAME =~ /^release-(.*)$/'
-    - if: '$CI_COMMIT_REF_NAME =~ /^feature-.*$/'
-    - if: '$CI_COMMIT_REF_NAME == $BASE_BRANCH'
 
 #-----------------------------------------------------------------------------------------------------------------------
 # SCHEDULE
