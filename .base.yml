@@ -8,6 +8,9 @@ variables:
   # default is stage - this is overridden in prod deployment
   SSH_USER: ${SSH_USER_STAGE}
   SSH_HOST: ${SSH_HOST_STAGE}
+  SSH_PORT_PROD: 22
+  SSH_PORT_STAGE: 22
+  SSH_PORT: ${SSH_PORT_STAGE}
   # project paths - default both to root directory
   PATH_CI_DIR: "${CI_PROJECT_DIR}"
   PATH_APP_DIR: "${PATH_CI_DIR}"
@@ -125,7 +128,7 @@ stages:
     ## with your own domain name. You can copy and repeat that command if you have
     ## more than one server to connect to.
     ## add all SSH_HOST variables to known_hosts file
-    - printenv | grep ^SSH_HOST | while read line; do ssh-keyscan ${line##*=} >> ~/.ssh/known_hosts; done
+    - printenv | grep ^SSH_HOST | while read line; do ssh-keyscan -p ${SSH_PORT} ${line##*=} >> ~/.ssh/known_hosts; done
     - echo "${SSH_HOST}" >> /etc/hosts
     - echo -e "Host *\n\tStrictHostKeyChecking yes\n\tUserKnownHostsFile=~/.ssh/known_hosts\n\n" > ~/.ssh/config
     - echo -e "\e[0Ksection_end:`date +%s`:${DATE}\r\e[0K"

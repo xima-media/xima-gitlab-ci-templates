@@ -3,6 +3,13 @@
 ![GitLab-CI Templates](.doc/gitlab-ci-templates.png)
 
 This repository provides several templates for reusable GitLab-CI jobs. 
+Jobs are based on [xima-deployer-tools](https://github.com/xima-media/xima-deployer-tools) - which is based on [deployer](https://deployer.org/) and [deployer-extended](https://github.com/sourcebroker/deployer-extended).
+
+## Features
+- Ready to use Deployments for TYPO3, Drupal and Symfony
+- Feature Branch Deployment (https://github.com/xima-media/xima-deployer-tools/blob/main/docs/FEATURE.md)
+- MS-Teams notifications
+- Customizable (variables, override jobs)
 
 ## Installation
 
@@ -144,6 +151,26 @@ variables:
   BUILD_COMPOSER_VERSION: "2.6"
   BUILD_NODE_VERSION: "18"
   PHP_VERSION: "8.2"
+```
+
+### SSH
+
+SSH settings - most are mandatory (default values are stored in the [.base.yml](.base.yml)):
+```yaml
+variables:
+  # Stage
+  SSH_USER_STAGE: "user"
+  HOST_STAGE: "stage.example.com"
+  APP_URL_STAGE: "https://${HOST_STAGE}/"
+  SSH_HOST_STAGE: "<IP-Address>"
+  SSH_PORT_STAGE: 1223 # this is optional to override the default port 22
+
+  # Prod
+  SSH_USER_PROD: "user"
+  HOST_PROD: "prod.example.com"
+  APP_URL_PROD: "https://${HOST_PROD}/"
+  SSH_HOST_PROD: "<IP-Address>"
+  SSH_PORT_PROD: 1223 # this is optional to override the default port 22
 ```
 
 ### Feature-stop downstream branch
